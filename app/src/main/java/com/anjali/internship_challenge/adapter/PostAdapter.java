@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anjali.internship_challenge.CommentActivity;
 import com.anjali.internship_challenge.R;
 import com.anjali.internship_challenge.data.Post;
 
@@ -41,9 +42,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.cmt_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(context,commentActivity.class);
-//                intent.putExtra("post", posts.get(position));
-//                context.startActivity(intent);
+                Intent intent=new Intent(context, CommentActivity.class);
+                intent.putExtra("post", posts.get(position));
+                context.startActivity(intent);
             }
         });
     }
