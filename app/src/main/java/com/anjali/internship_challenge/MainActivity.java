@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.anjali.internship_challenge.adapter.UserAdapter;
 import com.anjali.internship_challenge.data.Address;
 import com.anjali.internship_challenge.data.Company;
 import com.anjali.internship_challenge.data.Geo;

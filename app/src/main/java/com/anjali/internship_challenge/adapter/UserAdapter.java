@@ -1,4 +1,4 @@
-package com.anjali.internship_challenge;
+package com.anjali.internship_challenge.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anjali.internship_challenge.R;
+import com.anjali.internship_challenge.UserActivity;
 import com.anjali.internship_challenge.data.User;
 
 import java.util.ArrayList;
@@ -19,9 +21,9 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArrayList<User> users;
+    public ArrayList<User> users;
 
-    UserAdapter(Context context, ArrayList<User> users) {
+    public UserAdapter(Context context, ArrayList<User> users) {
         this.context = context;
         this.users = users;
         this.layoutInflater = LayoutInflater.from(context);
