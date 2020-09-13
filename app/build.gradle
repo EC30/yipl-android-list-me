@@ -38,4 +38,11 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.0'
     implementation 'info.hoang8f:fbutton:1.0.5'
 
+    def room_version = "2.2.5"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.room:room-rxjava2:2.2.5"
+
 }

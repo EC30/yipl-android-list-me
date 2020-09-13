@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.anjali.internship_challenge.PhotoActivity;
 import com.anjali.internship_challenge.R;
 import com.anjali.internship_challenge.data.Album;
 
@@ -41,9 +42,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder> 
         holder.photo_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(context,activity_photos.class);
-//                intent.putExtra("album", albums.get(position));
-//                context.startActivity(intent);
+                Intent intent=new Intent(context, PhotoActivity.class);
+                intent.putExtra("album", albums.get(position));
+                context.startActivity(intent);
             }
         });
     }
