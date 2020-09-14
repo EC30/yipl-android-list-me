@@ -1,10 +1,16 @@
 package com.anjali.internship_challenge;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.anjali.internship_challenge.adapter.UserAdapter;
 import com.anjali.internship_challenge.data.Address;
@@ -23,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         ArrayList<User> users = new ArrayList<>();
 
@@ -68,5 +76,23 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView userListRecyclerView = findViewById(R.id.userListRecyclerView);
         userListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         userListRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.drop_down_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id == R.id.addTodo){
+            Intent intent=new Intent(MainActivity.this,ToDoActivity.class);
+            startActivity(intent);
+        }
+
+        return true;
+
     }
 }

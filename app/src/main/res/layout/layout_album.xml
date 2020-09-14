@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +20,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/layoutColor"
         android:orientation="vertical">
 
     <LinearLayout
@@ -39,6 +41,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_margin="8dp"
+            android:fontFamily="@font/roboto_black"
+            android:textSize="18dp"
             android:text="TextView" />
 
     </LinearLayout>
@@ -47,6 +51,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:fontFamily="@font/roboto_black"
+            android:background="@color/fbutton_color_amethyst"
+            android:textSize="18dp"
             android:text="View Photos" />
     </LinearLayout>
 

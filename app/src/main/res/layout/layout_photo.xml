@@ -19,6 +19,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/layoutColor"
             android:orientation="vertical">
 
             <LinearLayout
@@ -38,6 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:fontFamily="@font/ubuntu_mono"
+                    android:textSize="18dp"
                     android:layout_margin="8dp"
                     android:text="TextView" />
 

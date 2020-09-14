@@ -12,6 +12,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/layoutColor"
             android:orientation="vertical">
 
             <TextView
@@ -27,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="post title"
+                android:fontFamily="@font/roboto_black"
                 android:layout_margin="8dp"
                 android:textStyle="bold"
                 android:textSize="18sp" />
@@ -37,6 +40,8 @@
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
                 android:layout_margin="8dp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
                 android:justificationMode="inter_word"
                 android:text="post body" />
 
@@ -44,6 +49,8 @@
                 android:id="@+id/cmt_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
+                android:background="@color/fbutton_color_amethyst"
                 android:text="View Comment" />
         </LinearLayout>
 

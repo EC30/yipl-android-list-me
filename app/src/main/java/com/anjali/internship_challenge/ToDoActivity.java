@@ -1,23 +1,19 @@
 package com.anjali.internship_challenge;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -27,14 +23,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.anjali.internship_challenge.adapter.ToDosAdapter;
+import com.anjali.internship_challenge.data.Post;
 import com.anjali.internship_challenge.data.ToDos;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
-public class ToDosFragment extends Fragment {
+public class ToDoActivity extends AppCompatActivity {
     private Dialog dialog;
     private ArrayList<ToDos> todos=new ArrayList<>();
     private AlertDialog dialogTodo;
@@ -43,22 +38,21 @@ public class ToDosFragment extends Fragment {
     ArrayList<String> task_id, task, time;
     private ToDos todo;
     private RecyclerView todo_recycler_view;
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.fragment_to_dos, container, false);
-        ImageView add_tasks = (ImageView) view.findViewById(R.id.add_tasks);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_todo);
 
+        ImageView add_tasks = (ImageView) findViewById(R.id.add_tasks);
 
-        todo = (ToDos) getArguments().getSerializable("todo");
-        todo_recycler_view=view.findViewById(R.id.todo_recycler_view);
+        todo = (ToDos) getIntent().getSerializableExtra("todo");
+        todo_recycler_view=findViewById(R.id.todo_recycler_view);
 
         add_tasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(view.getRootView().getContext());
-                View dialogView=LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.todos_popup,null);
+                View dialogView= LayoutInflater.from(view.getRootView().getContext()).inflate(R.layout.todos_popup,null);
                 final EditText toDoTask;
                 final TextView date;
                 Button select;
@@ -76,9 +70,18 @@ public class ToDosFragment extends Fragment {
                         .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                DbHelper myDB=new DbHelper(getContext());
-                                myDB.addBook(toDoTask.getText().toString().trim(),
-                                        date.getText().toString().trim());
+                                if(toDoTask.getText().toString().isEmpty()){
+                                    Toast.makeText(ToDoActivity.this, "Task cannot be empty", Toast.LENGTH_SHORT).show();
+                                }else if(date.getText().toString().isEmpty()){
+                                    Toast.makeText(ToDoActivity.this, "Date cannot be empty", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    DbHelper myDB=new DbHelper(ToDoActivity.this);
+                                    myDB.addBook(toDoTask.getText().toString().trim(),
+                                            date.getText().toString().trim());
+                                    displaydata();
+                                    tadpater.notifyDataSetChanged();
+                                }
+
                             }
                         });
                 //builder.setCancelable(true);
@@ -88,13 +91,13 @@ public class ToDosFragment extends Fragment {
                 select.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+                        DatePickerDialog dialog = new DatePickerDialog(ToDoActivity.this, new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, final int year, final int month, final int dayOfMonth) {
 
                                 final Calendar newDate = Calendar.getInstance();
                                 Calendar newTime = Calendar.getInstance();
-                                TimePickerDialog time = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+                                TimePickerDialog time = new TimePickerDialog(ToDoActivity.this, new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
@@ -104,7 +107,7 @@ public class ToDosFragment extends Fragment {
                                         if(newDate.getTimeInMillis()-tem.getTimeInMillis()>0)
                                             date.setText(newDate.getTime().toString());
                                         else
-                                            Toast.makeText(getContext(),"Invalid time",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ToDoActivity.this,"Invalid time",Toast.LENGTH_SHORT).show();
 
                                     }
                                 },newTime.get(Calendar.HOUR_OF_DAY),newTime.get(Calendar.MINUTE),true);
@@ -122,26 +125,26 @@ public class ToDosFragment extends Fragment {
             }
         });
 
-        myDB=new DbHelper(getContext());
+        myDB=new DbHelper(ToDoActivity.this);
         task_id=new ArrayList<>();
         task=new ArrayList<>();
         time=new ArrayList<>();
 
         displaydata();
-        tadpater=new ToDosAdapter(getContext(),task_id,task,time);
+        tadpater=new ToDosAdapter(this,task_id,task,time);
         todo_recycler_view.setAdapter(tadpater);
-        todo_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
-        tadpater.notifyDataSetChanged();
+        todo_recycler_view.setLayoutManager(new LinearLayoutManager(this));
 
 
-        return view;
+
     }
-
-
-    void displaydata(){
+    public void displaydata(){
+        task_id.clear();
+        task.clear();
+        time.clear();
         Cursor cursor =myDB.readAllData();
         if(cursor.getCount() == 0){
-            Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ToDoActivity.this, "No data", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
                 task_id.add(cursor.getString(0));

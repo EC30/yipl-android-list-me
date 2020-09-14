@@ -39,9 +39,6 @@ public class UserActivity extends AppCompatActivity {
                     case R.id.albumsFragment:
                         selectedFragment = new AlbumsFragment();
                         break;
-                    case R.id.toDosFragment:
-                        selectedFragment = new ToDosFragment();
-                        break;
                 }
 
                 assert selectedFragment != null;

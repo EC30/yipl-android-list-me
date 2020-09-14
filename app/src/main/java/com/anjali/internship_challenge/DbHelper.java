@@ -51,7 +51,7 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
+    public Cursor readAllData(){
         String query="SELECT * FROM " + DB_TABLE;
         SQLiteDatabase DB=this.getReadableDatabase();
 

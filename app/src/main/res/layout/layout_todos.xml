@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="@dimen/cardview_compat_inset_shadow"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/fbutton_color_pumpkin"
+            android:background="@color/fbutton_color_sun_flower"
             android:orientation="vertical">
 
             <LinearLayout
@@ -37,7 +37,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/ubuntu_mono"
                 android:text="1"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:fontFamily="@font/cagliostro"
+                android:fontFamily="@font/ubuntu_mono"
                 android:text="Task"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -62,7 +62,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/cagliostro"
+                android:fontFamily="@font/ubuntu_mono"
                 android:text="date"
                 android:textStyle="italic" />
 

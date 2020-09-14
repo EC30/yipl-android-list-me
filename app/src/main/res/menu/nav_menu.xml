@@ -16,9 +16,6 @@
         android:title="Albums"
         android:icon="@drawable/ic_albums" />
 
-    <item
-        android:id="@+id/toDosFragment"
-        android:title="To-Dos"
-        android:icon="@drawable/ic_todos" />
+
 
 </menu>

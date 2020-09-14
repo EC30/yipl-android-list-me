@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,9 +112,9 @@ public class ToDosAdapter extends RecyclerView.Adapter<ToDosAdapter.ViewHolder> 
                                 DbHelper myDB=new DbHelper(view.getContext());
                                 tasks=toDoTask.getText().toString().trim();
                                 times=date.getText().toString().trim();
-
                                 myDB.updateData(id,tasks,times);
                                 notifyDataSetChanged();
+
                             }
                         });
 
@@ -181,6 +182,5 @@ public class ToDosAdapter extends RecyclerView.Adapter<ToDosAdapter.ViewHolder> 
             myLayout=itemView.findViewById(R.id.myLayout);
         }
     }
-
 
 }
